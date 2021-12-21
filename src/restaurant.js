@@ -89,17 +89,24 @@ const orderMenu = (pedido) => {
   restaurant.consumption.push(pedido);
 };
 
+const somaConsumo = () => {
+  let consumo = 0;
+  const comida = restaurant.fetchMenu.food;
+};
+
 const createMenu = (cardapio) => {
   restaurant.fetchMenu = () => cardapio;
   restaurant.consumption = [];
   restaurant.order = orderMenu;
+  restaurant.pay = somaConsumo;
 
  return restaurant;
 };
 
-// let menu = createMenu({ food: { coxinha: 3.9, sopa: 9.9 }, drink: { agua: 3.9, cerveja: 6.9 } });
+let menu = createMenu({ food: { coxinha: 3.9, sopa: 9.9 }, drink: { agua: 3.9, cerveja: 6.9 } });
+
+// console.log(menu.fetchMenu())
 // menu.order('coxinha');
-// console.log(restaurant);
 // console.log(restaurant.consumption);
 
 module.exports = createMenu;

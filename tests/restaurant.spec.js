@@ -128,6 +128,7 @@ describe('10 - Implemente os casos de teste e a função `createMenu`', () => {
     objetoRetornado.order('sashimi');
     expect(objetoRetornado.consumption).toEqual(['coxinha', 'agua', 'sopa', 'sashimi'])
   });
+
     // Agora faça o TESTE 7 deste arquivo.
     // --------------------------------------------------------------------------------------
 
@@ -145,8 +146,10 @@ describe('10 - Implemente os casos de teste e a função `createMenu`', () => {
       objetoRetornado.order('coxinha');
       expect(objetoRetornado.consumption).toEqual(['coxinha', 'agua', 'coxinha'])
     });
+
     // Agora faça o TESTE 8 deste arquivo.
     // --------------------------------------------------------------------------------------
+
     // TESTE 8: Verifique se, ao chamar `objetoRetornado.pay()`, retorna-se a soma dos preços de tudo que foi pedido, conforme registrado em `objetoRetornado.consumption`
     // ```
     // objetoRetornado.order('coxinha');
@@ -154,6 +157,15 @@ describe('10 - Implemente os casos de teste e a função `createMenu`', () => {
     // objetoRetornado.order('coxinha');
     // objetoRetornado.pay() // Retorno: somaDosPreçosDosPedidos
     // ```
+  it("Verifique se, ao chamar `objetoRetornado.pay()`, retorna-se a soma dos preços de tudo que foi pedido, conforme registrado em `objetoRetornado.consumption`", () => {
+    const objetoRetornado = createMenu('objetoQualquer');
+
+    objetoRetornado.order('coxinha');
+    objetoRetornado.order('agua');
+    objetoRetornado.order('sopa');
+
+    expect(objetoRetornado.pay()).toBeCloseTo(12.87,3)
+  })
     // Agora faça o PASSO 4 no arquivo `src/restaurant.js`.
   });
 
