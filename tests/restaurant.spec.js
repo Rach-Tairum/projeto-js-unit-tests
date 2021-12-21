@@ -62,7 +62,7 @@ describe('10 - Implemente os casos de teste e a função `createMenu`', () => {
     // objetoRetornado.fetchMenu() // Retorno: { food: {}, drink: {}}
     // ```
   it ("Verifique se 'objetoRetornado.fetchMenu()' retorna um objeto cujas chaves são somente `food` e `drink`", () => {
-    const objetoRetornado = createMenu();
+    const objetoRetornado = createMenu({ food: {}, drink: {} });
     const chavesFetchMenu = Object.keys(objetoRetornado.fetchMenu())
     expect(chavesFetchMenu.length).toBe(2)
     expect(chavesFetchMenu[0]).toEqual('food')
@@ -75,6 +75,11 @@ describe('10 - Implemente os casos de teste e a função `createMenu`', () => {
     // const objetoRetornado = createMenu(objetoQualquer);
     // objetoRetornado.fetchMenu() // Retorno: objetoQualquer
     // ```
+    it ("Verifique se o menu passado pra função createMenu é identico ao menu recuperado pela função 'objetoRetornado.fetchMenu'", () => {
+      const objetoRetornado = createMenu('objetoQualquer')
+      expect(objetoRetornado.fetchMenu()).toEqual('objetoQualquer')
+    })
+    
     // Agora faça o PASSO 1 no arquivo `src/restaurant.js`.
     // --------------------------------------------------------------------------------------
     // TESTE 4: Verifique se 'objetoRetornado.consumption', após a criação do menu, retorna um array vazio.
