@@ -120,8 +120,17 @@ describe('10 - Implemente os casos de teste e a função `createMenu`', () => {
     // objetoRetornado.order("sashimi");
     // objetoRetornado.consumption // Retorno: ["coxinha", "agua", "sopa", "sashimi"]
     // ```
+  it ('Verifique se, ao adicionar três pedidos, dentre bebidas e comidas, o array `objetoRetornado.consumption` contém os itens pedidos.', () => {
+    const objetoRetornado = createMenu('objetoQualquer');
+    objetoRetornado.order('coxinha');
+    objetoRetornado.order('agua');
+    objetoRetornado.order('sopa');
+    objetoRetornado.order('sashimi');
+    expect(objetoRetornado.consumption).toEqual(['coxinha', 'agua', 'sopa', 'sashimi'])
+  });
     // Agora faça o TESTE 7 deste arquivo.
     // --------------------------------------------------------------------------------------
+
     // TESTE 7: Verifique se a função `order` aceita que pedidos repetidos sejam acrescidos a consumption.
     // ```
     // objetoRetornado.order('coxinha');
@@ -129,6 +138,13 @@ describe('10 - Implemente os casos de teste e a função `createMenu`', () => {
     // objetoRetornado.order('coxinha');
     // objetoRetornado.consumption // Retorno: ['coxinha', 'agua', 'coxinha']
     // ```
+    it ("Verifique se a função `order` aceita que pedidos repetidos sejam acrescidos a consumption.", () => {
+      const objetoRetornado = createMenu('objetoQualquer');
+      objetoRetornado.order('coxinha');
+      objetoRetornado.order('agua');
+      objetoRetornado.order('coxinha');
+      expect(objetoRetornado.consumption).toEqual(['coxinha', 'agua', 'coxinha'])
+    });
     // Agora faça o TESTE 8 deste arquivo.
     // --------------------------------------------------------------------------------------
     // TESTE 8: Verifique se, ao chamar `objetoRetornado.pay()`, retorna-se a soma dos preços de tudo que foi pedido, conforme registrado em `objetoRetornado.consumption`
