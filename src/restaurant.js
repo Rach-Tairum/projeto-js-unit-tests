@@ -89,11 +89,51 @@ const orderMenu = (pedido) => {
   restaurant.consumption.push(pedido);
 };
 
-const somaConsumo = () => {
-  let consumo = 0;
-  const comida = restaurant.fetchMenu.food;
-};
+function somaConsumoComida() {
+  let consumoComida = 0;
+  const cardapio = restaurant.fetchMenu();
+  const comidasPrecos = cardapio.food;
+  const comidas = Object.keys(comidasPrecos);
+  const precos = Object.values(comidasPrecos);
+  const pedido = restaurant.consumption;
 
+  pedido.forEach((elemento) => {
+    for (let index = 0; index < comidas.length; index += 1) {
+      if (elemento === comidas[index]) {
+        consumoComida += precos[index];
+      }
+    }
+  });
+  return consumoComida;
+}
+
+function somaConsumoBebida() {
+  let consumoBebida = 0;
+  const cardapio = restaurant.fetchMenu();
+  const bebidasPrecos = cardapio.drink;
+  const bebidas = Object.keys(bebidasPrecos);
+  const precos = Object.values(bebidasPrecos);
+  const pedido = restaurant.consumption;
+
+  pedido.forEach((elemento) => {
+    for (let index = 0; index < bebidas.length; index += 1) {
+      if (elemento === bebidas[index]) {
+        consumoBebida += precos[index];
+      }
+    }
+  });
+  return consumoBebida;
+}
+
+const somaConsumo = () => {
+  const Bebida = somaConsumoBebida();
+  const Comida = somaConsumoComida();
+  const consumoInicial = Bebida + Comida;
+  const servico = consumoInicial * 0.1;
+  const consumoFinal = consumoInicial + servico;
+
+  return consumoFinal;
+};
 const createMenu = (cardapio) => {
   restaurant.fetchMenu = () => cardapio;
   restaurant.consumption = [];
@@ -105,8 +145,9 @@ const createMenu = (cardapio) => {
 
 let menu = createMenu({ food: { coxinha: 3.9, sopa: 9.9 }, drink: { agua: 3.9, cerveja: 6.9 } });
 
-// console.log(menu.fetchMenu())
-// menu.order('coxinha');
-// console.log(restaurant.consumption);
+menu.order('coxinha');
+menu.order('agua');
+menu.order('sopa');
+console.log(menu.pay());
 
 module.exports = createMenu;
